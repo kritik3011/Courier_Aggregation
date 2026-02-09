@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { trackingAPI } from '../services/api';
 import { Card, StatusBadge, Button, Skeleton } from '../components/UI';
-import { HiOutlineSearch, HiOutlineTruck } from 'react-icons/hi';
+import { HiOutlineSearch, HiOutlineTruck, HiOutlineHome } from 'react-icons/hi';
 import { format } from 'date-fns';
 
 export default function Tracking() {
@@ -87,8 +87,38 @@ export default function Tracking() {
 
   return (
     <div className="min-h-screen bg-dark-950">
+      {/* Navigation Header */}
+      <header className="glass border-b border-dark-700/50">
+        <div className="max-w-4xl mx-auto px-4 lg:px-8 py-4 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-lg shadow-primary-500/30">
+              <HiOutlineTruck className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="font-bold text-lg gradient-text">CourierHub</h1>
+              <p className="text-xs text-dark-400">Logistics Platform</p>
+            </div>
+          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              to="/dashboard"
+              className="px-4 py-2 rounded-xl bg-dark-800 text-dark-300 hover:text-dark-100 hover:bg-dark-700 transition-colors text-sm font-medium flex items-center gap-2"
+            >
+              <HiOutlineHome className="w-4 h-4" />
+              Dashboard
+            </Link>
+            <Link
+              to="/login"
+              className="px-4 py-2 rounded-xl bg-primary-600 text-white hover:bg-primary-500 transition-colors text-sm font-medium"
+            >
+              Login
+            </Link>
+          </div>
+        </div>
+      </header>
+
       <div className="max-w-4xl mx-auto p-4 lg:p-8 space-y-8">
-        {/* Header */}
+        {/* Page Header */}
         <div className="text-center">
           <div className="inline-flex items-center gap-3 mb-4">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-lg">
