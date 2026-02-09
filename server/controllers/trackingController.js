@@ -1,6 +1,33 @@
 const Shipment = require('../models/Shipment');
 const TrackingLog = require('../models/TrackingLog');
 
+// @desc    Get sample tracking IDs for demo
+// @route   GET /api/tracking/samples
+exports.getSampleIds = async (req, res) => {
+  try {
+    const shipments = await Shipment.find()
+      .select('trackingId status courierName')
+      .limit(5)
+      .sort('-createdAt');
+
+    const samples = shipments.map(s => ({
+      trackingId: s.trackingId,
+      status: s.status,
+      courier: s.courierName
+    }));
+
+    res.status(200).json({
+      success: true,
+      data: samples
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching samples'
+    });
+  }
+};
+
 // @desc    Track shipment by tracking ID
 // @route   GET /api/tracking/:trackingId
 exports.trackShipment = async (req, res) => {

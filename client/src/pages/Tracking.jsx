@@ -12,6 +12,22 @@ export default function Tracking() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
+  const [sampleIds, setSampleIds] = useState([]);
+
+  // Fetch sample tracking IDs on mount
+  useEffect(() => {
+    const fetchSamples = async () => {
+      try {
+        const res = await trackingAPI.getSamples();
+        if (res.data.success) {
+          setSampleIds(res.data.data);
+        }
+      } catch (err) {
+        console.log('Could not fetch samples');
+      }
+    };
+    fetchSamples();
+  }, []);
 
   useEffect(() => {
     if (urlTrackingId) {
@@ -100,12 +116,37 @@ export default function Tracking() {
               Track
             </Button>
           </form>
+
+          {/* Sample Tracking IDs */}
+          {!result && !loading && sampleIds.length > 0 && (
+            <div className="mt-4 pt-4 border-t border-dark-700/50">
+              <p className="text-sm text-dark-400 mb-2">Try these sample tracking IDs:</p>
+              <div className="flex flex-wrap gap-2">
+                {sampleIds.slice(0, 3).map((sample) => (
+                  <button
+                    key={sample.trackingId}
+                    onClick={() => {
+                      setTrackingId(sample.trackingId);
+                      handleTrack(sample.trackingId);
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-dark-700/50 text-sm text-dark-300 hover:text-primary-400 hover:bg-dark-700 transition-colors font-mono flex items-center gap-2"
+                  >
+                    <span>{sample.trackingId}</span>
+                    <span className="text-xs text-dark-500">({sample.courier})</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </Card>
 
         {/* Error */}
         {error && (
           <Card className="max-w-2xl mx-auto bg-red-500/10 border-red-500/30">
             <p className="text-red-400 text-center">{error}</p>
+            <p className="text-dark-400 text-sm text-center mt-2">
+              Make sure the tracking ID is correct. Valid IDs start with DEL, BLU, or DTD followed by alphanumeric characters.
+            </p>
           </Card>
         )}
 

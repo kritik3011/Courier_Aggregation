@@ -73,6 +73,7 @@ export const couriersAPI = {
 
 // Tracking API
 export const trackingAPI = {
+  getSamples: () => api.get('/tracking/samples'),
   track: (trackingId) => api.get(`/tracking/${trackingId}`),
   getTimeline: (trackingId) => api.get(`/tracking/${trackingId}/timeline`),
   simulate: (trackingId) => api.post(`/tracking/${trackingId}/simulate`)
