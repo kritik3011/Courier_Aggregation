@@ -14,6 +14,7 @@ import CourierComparison from './pages/CourierComparison';
 import Analytics from './pages/Analytics';
 import AdminPanel from './pages/AdminPanel';
 import Profile from './pages/Profile';
+import Settings from './pages/Settings';
 
 // Components
 import Layout from './components/Layout';
@@ -57,6 +58,7 @@ function AppRoutes() {
       <Route path="/compare" element={<ProtectedRoute><CourierComparison /></ProtectedRoute>} />
       <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+      <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
 
       {/* Admin Routes */}
       <Route path="/admin/*" element={<ProtectedRoute adminOnly><AdminPanel /></ProtectedRoute>} />

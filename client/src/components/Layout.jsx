@@ -170,9 +170,12 @@ export default function Layout({ children }) {
               </NavLink>
 
               {/* Settings */}
-              <button className="p-2.5 rounded-xl hover:bg-dark-800 text-dark-300 hover:text-dark-100 transition-colors">
+              <NavLink
+                to="/settings"
+                className={({ isActive }) => `p-2.5 rounded-xl hover:bg-dark-800 text-dark-300 hover:text-dark-100 transition-colors ${isActive ? 'bg-dark-800 text-primary-400' : ''}`}
+              >
                 <HiOutlineCog className="w-5 h-5" />
-              </button>
+              </NavLink>
 
               {/* Logout */}
               <button
