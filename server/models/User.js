@@ -45,7 +45,25 @@ const userSchema = new mongoose.Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
-  lastLogin: Date
+  lastLogin: Date,
+  settings: {
+    // Appearance
+    darkMode: { type: Boolean, default: true },
+    compactView: { type: Boolean, default: false },
+    // Notifications
+    emailNotifications: { type: Boolean, default: true },
+    shipmentUpdates: { type: Boolean, default: true },
+    marketingEmails: { type: Boolean, default: false },
+    weeklyReports: { type: Boolean, default: true },
+    // Preferences
+    defaultServiceType: { type: String, default: 'standard' },
+    autoGenerateLabel: { type: Boolean, default: true },
+    currency: { type: String, default: 'INR' },
+    timezone: { type: String, default: 'Asia/Kolkata' },
+    // Privacy
+    shareAnalytics: { type: Boolean, default: true },
+    twoFactorAuth: { type: Boolean, default: false }
+  }
 }, {
   timestamps: true
 });

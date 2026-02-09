@@ -105,3 +105,13 @@ export const notificationsAPI = {
   markAllAsRead: () => api.put('/notifications/read-all'),
   delete: (id) => api.delete(`/notifications/${id}`)
 };
+
+// Settings API
+export const settingsAPI = {
+  get: () => api.get('/settings'),
+  update: (data) => api.put('/settings', data),
+  reset: () => api.post('/settings/reset'),
+  exportData: () => api.post('/settings/export'),
+  requestDeletion: () => api.post('/settings/delete-account'),
+  changePassword: (data) => api.put('/settings/password', data)
+};

@@ -14,6 +14,7 @@ const trackingRoutes = require("./routes/tracking");
 const analyticsRoutes = require("./routes/analytics");
 const adminRoutes = require("./routes/admin");
 const notificationRoutes = require("./routes/notifications");
+const settingsRoutes = require("./routes/settings");
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use("/api/tracking", trackingRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/settings", settingsRoutes);
 
 // Health check route
 app.get("/api/health", (req, res) => {
